@@ -1,0 +1,41 @@
+// ==UserScript==
+// @name           Pokeheroes Auto Guest clicker
+// @namespace      Yarolds
+// @description    Originally a Yarolds script, forked to be a PH guest click automator 
+// @version        5.1.6
+// @copyright      2012+
+// @homepage	     http://swle.yarold.eu
+// @require        http://code.jquery.com/jquery-1.12.4.min.js
+// @include        https://pokeheroes.com/interact*
+// @include        https://pokeheroes.com/pokemon*
+// @downloadURL    https://update.greasyfork.org/scripts/384540/Yarolds%20Close%20It.user.js
+// @updateURL      https://update.greasyfork.org/scripts/384540/Yarolds%20Close%20It.meta.js
+// ==/UserScript==
+
+function randomNumber(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+var url = window.location.href;
+var min = 250;
+var max = 550;
+
+if (url.includes('pokeheroes.com/pokemon')) {
+    setTimeout(function () {
+        var trainButton = $('.simpleInteract').eq(0);
+        $(trainButton).click();
+        setTimeout(function () {
+            window.close();
+        }, 500);
+    }, randomNumber(min, max));
+} else if (url.includes('pokeheroes.com/interact')) {
+    // Add your specific actions for 'interact' pages here
+    // ...
+
+    // After performing actions, close the window
+    setTimeout(function () {
+        window.close();
+    }, 500);
+} else {
+    window.close();
+}
